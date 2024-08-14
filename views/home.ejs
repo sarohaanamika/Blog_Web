@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog-web</title>
+  <link rel="stylesheet" href="../public/styles/styles.css">
+</head>
+   <body style="background: linear-gradient(to right, #f8b195, #E07422); min-height: 100vh;">
+    <%- include('partials/header') %>
+    <h1>My Blog</h1>
+    <a href="/compose" class="btn  btn-dark">New Post</a>
+    <% posts.forEach(function(post){ %>
+      <div class="post">
+        <h2><%= post.title %></h2>
+        <p><%= post.content.substring(0, 100) %>...</p>
+        <a href="/post/<%= post.id %>">Read More</a>
+        <a href="/edit/<%= post.id %>" class="btn btn-secondary">Edit</a>
+        <form action="/delete/<%= post.id %>" method="POST" style="display:inline;">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+      <% }); %>
+<%- include('partials/footer') %>
+  </body>    
+</html>
+
